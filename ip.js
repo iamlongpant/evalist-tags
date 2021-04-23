@@ -17,17 +17,20 @@ async function main() {
   const info = await res.json()
 
   if (!info.error && !info.bogon) {
+   let fields = [
+    { name: 'Hostname', value: info.hostname, inline: true},
+    { name: 'Location', value: `${info.city}, ${info.region}, ${info.country} :flag_${info.country.toLowerCase()}:`, inline: true },
+    { name: 'Organization', value: info.org, inline: true },
+    { name: 'Time zone', value: info.timezone, inline: true}
+   ]
+   
+   if (info.anycast) fields.push({ name: 'Anycast', value: ':white_check_mark:', inline: true })
+   
    embed = new MessageEmbed()
     .setTitle(`IP Info for ${ip}`)
     .setURL(`https://ipinfo.io/${ip}`)
     .setColor('#0099ff')
-    .addFields(
-      { name: 'Hostname', value: info.hostname, inline: true},
-      { name: 'Location', value: `${info.city}, ${info.region}, ${info.country} :flag_${info.country.toLowerCase()}:`, inline: true },
-      { name: 'Organization', value: info.org, inline: true },
-      { name: 'Time zone', value: info.timezone, inline: true},
-      { name: 'Anycast', value: ':white_check_mark:', inline: true },
-    )
+    .addFields(fields)
   } else if (info.bogon) {
    embed = new MessageEmbed()
     .setTitle(`:x: Private IP address`)
