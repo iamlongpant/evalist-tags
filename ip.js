@@ -1,6 +1,6 @@
 `eval ```js
 async function main() {
-  const ip = '1.1.1.1'
+  const ip = args
 
   let embed
   
