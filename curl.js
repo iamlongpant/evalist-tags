@@ -1,5 +1,6 @@
-`eval ```js
 function main() {
+  if (!args) return evalist.message('❌ `I need some arguments!`')
+
   const { exec } = require('child_process')
 
   exec(`curl ${args} --proxy http://evalist:${token}@localhost:80`, (err, stdout, stderr) => {
@@ -16,4 +17,3 @@ function main() {
 }
 
 main()
-```

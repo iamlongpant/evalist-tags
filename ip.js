@@ -1,5 +1,6 @@
-`eval ```js
 async function main() {
+  if (!args) return evalist.message('❌ `I need some arguments!`')
+
   const ip = args
 
   let embed
@@ -47,4 +48,3 @@ async function main() {
 }
 
 main()
-```
