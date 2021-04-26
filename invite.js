@@ -15,13 +15,16 @@ async function main() {
     .replace('!', '')
     
   let avatar
+  let user
   
-  const user = await evalist.fetchUser(id)
-
-  if (id === '830211465133686814') return evalist.message('no')
+  try {
+    user = await evalist.fetchUser(id)
+  } catch (e) {
+    return evalist.message(':x: `Not a valid user!`')
+  }
+  
+  if (user.id === '830211465133686814') return evalist.message('no')
     
-  if (!user) return evalist.message(':x: `Not a valid user!`')
-  
   if (!user.bot) return evalist.message(`:x: \`Hmmm... I don't think ${user.username} is a bot!\``)
   
   if (!user.avatar) {
